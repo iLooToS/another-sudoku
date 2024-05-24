@@ -22,13 +22,26 @@ function read(num) {
   return number;
 }
 
-console.log(read(4));
+const board = read(process.argv[2]);
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+function solve(board) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === null) {
+        for (let k = 1; k < 10; k++) {
+          if (isSolved(board, i, j, k)) {
+            board[i][j] = k;
+            if (solve(board)) {
+              return board;
+            }
+            board[i][j] = null;
+          }
+        }
+        return false;
+      }
+    }
+  }
+  return board;
 }
 
 function isSolved(board, row, col, num) {
@@ -48,6 +61,8 @@ function isSolved(board, row, col, num) {
     return true;
   }
 }
+
+console.table(solve(board));
 
 function prettyBoard() {
   /**
