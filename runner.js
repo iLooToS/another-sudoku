@@ -1,7 +1,5 @@
 const play = require('play-sound')();
-const {
-  read, solve, prettyBoard,
-} = require('./sudoku.js');
+const { read, solve, prettyBoard } = require('./sudoku.js');
 
 function start() {
   play.play('./music/Bonobo.mp3');
