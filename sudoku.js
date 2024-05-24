@@ -1,25 +1,23 @@
 const play = require("play-sound")();
 
 function read(num) {
-  const fs = require("fs");
-  const read1 = fs.readFileSync("./puzzles.txt", "utf-8").split("\n");
+  const fs = require('fs');
+  const { EOL } = require('os');
+  const read1 = fs.readFileSync('./puzzles.txt', 'utf-8').split(EOL);
   play.play('./music/Bonobo.mp3')
-  const getSudoku = read1[num - 1].split("");
-
+  const getSudoku = read1[num - 1].split('');
   const board = [];
 
   for (let i = 0; i < 9; i++) {
     board.push(getSudoku.slice(i * 9, (i + 1) * 9));
   }
 
-  const number = board.map((row) =>
-    row.map((el) => {
-      if (el === "-") {
-        return (el = null);
-      }
-      return Number(el);
-    })
-  );
+  const number = board.map((row) => row.map((el) => {
+    if (el === '-') {
+      return (el = null);
+    }
+    return Number(el);
+  }));
 
   return number;
 }
@@ -66,10 +64,25 @@ function isSolved(board, row, col, num) {
   }
 }
 
-function prettyBoard() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Выводит в консоль/терминал судоку.
-   * Подумай, как симпатичнее его вывести.
-   */
+console.table(solve(board));
+
+function prettyBoard(phrase) {
+  const cowsay = require('cowsay');
+  if (phrase) {
+    console.log(cowsay.think({
+      text: phrase.toUpperCase(),
+      cow: 'SQUIRREL',
+      e: 'oO',
+      T: 'U ',
+    }));
+    return;
+  }
+  console.log(cowsay.think({
+    text: 'ОГО, ТВОЕ РЕШЕНИЕ ВЫГЛЯДИТ ПРАВДОПОДОБНЫМ...',
+    cow: 'SQUIRREL',
+    e: 'oO',
+    T: 'U ',
+  }));
 }
+
+prettyBoard(process.argv[3]);
