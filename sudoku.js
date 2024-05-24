@@ -1,14 +1,3 @@
-// function read() {
-//   const { EOL } = require("os");
-//   const board = fs.readFileSync("./puzzles.txt", "utf-8");
-//   const boardSudoku = board.split(EOL);
-//   const str = boardSudoku.map((el) => el.split(","));
-
-//   return str;
-//   /**
-//    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-//    */
-// }
 function read(num) {
   const fs = require("fs");
   const read1 = fs.readFileSync("./puzzles.txt", "utf-8").split("\n");
