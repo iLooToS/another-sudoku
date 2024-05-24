@@ -1,7 +1,9 @@
+const play = require("play-sound")();
+
 function read(num) {
   const fs = require("fs");
   const read1 = fs.readFileSync("./puzzles.txt", "utf-8").split("\n");
-
+  play.play('./music/Bonobo.mp3')
   const getSudoku = read1[num - 1].split("");
 
   const board = [];
@@ -18,7 +20,7 @@ function read(num) {
       return Number(el);
     })
   );
-  
+
   return number;
 }
 
