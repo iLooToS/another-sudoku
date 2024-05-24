@@ -56,8 +56,19 @@ function isSolved(board, row, col, num) {
   }
 }
 
-function prettyBoard(phrase) {
+function prettyBoard(phrase, fail) {
   const cowsay = require('cowsay');
+  if (fail >= 16) {
+    console.log(
+      cowsay.think({
+        text: 'ОГО, НУ И РЕШЕНИЕ У ТЕБЯ ПОЛУЧИЛОСЬ...',
+        cow: 'SQUIRREL',
+        e: 'oO',
+        T: 'U ',
+      }),
+    );
+    return;
+  }
   if (phrase) {
     console.log(
       cowsay.think({
