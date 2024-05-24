@@ -19,7 +19,7 @@ function read(num) {
 
   return number;
 }
-console.log(read(1));
+console.log(read(4));
 
 function solve() {
   /**
