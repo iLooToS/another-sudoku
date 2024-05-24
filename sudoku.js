@@ -2,8 +2,11 @@ function read(num) {
   const fs = require('fs');
   const { EOL } = require('os');
   const read1 = fs.readFileSync('./puzzles.txt', 'utf-8').split(EOL);
+
   const getSudoku = read1[num - 1].split('');
+
   const board = [];
+
   for (let i = 0; i < 9; i++) {
     board.push(getSudoku.slice(i * 9, (i + 1) * 9));
   }
@@ -42,6 +45,7 @@ function isSolved(board, row, col, num) {
       return false;
     }
   }
+
   const startRow = Math.floor(row / 3) * 3;
   const startCol = Math.floor(col / 3) * 3;
 
