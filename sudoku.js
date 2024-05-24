@@ -3,27 +3,31 @@ const play = require("play-sound")();
 function read(num) {
   const fs = require('fs');
   const { EOL } = require('os');
+  
   const read1 = fs.readFileSync('./puzzles.txt', 'utf-8').split(EOL);
-  play.play('./music/Bonobo.mp3')
-  const getSudoku = read1[num - 1].split('');
+  const getSudoku = read1[num - 1].split("");
+  
   const board = [];
-
+  
   for (let i = 0; i < 9; i++) {
     board.push(getSudoku.slice(i * 9, (i + 1) * 9));
   }
-
-  const number = board.map((row) => row.map((el) => {
-    if (el === '-') {
-      return (el = null);
-    }
-    return Number(el);
-  }));
-
+  
+  const number = board.map((row) =>
+    row.map((el) => {
+      if (el === "-") {
+        return (el = null);
+      }
+      return Number(el);
+    })
+  );
+  
   return number;
 }
 
 const board = read(process.argv[2]);
 
+play.play("./music/Bonobo.mp3");
 function solve(board) {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -43,7 +47,6 @@ function solve(board) {
   }
   return board;
 }
-
 function isSolved(board, row, col, num) {
   for (let i = 0; i < board.length; i++) {
     if (board[i][col] === num || board[row][i] === num) {
@@ -63,6 +66,7 @@ function isSolved(board, row, col, num) {
     return true;
   }
 }
+console.table(solve(board));
 
 console.table(solve(board));
 
