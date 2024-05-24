@@ -1,1 +1,2 @@
-// Используйте для решения судоку необходимые функции из файла sudoku.js
+const play = require("play-sound")();
+play.play("./music/Bonobo.mp3");
