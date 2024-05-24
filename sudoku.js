@@ -15,7 +15,6 @@ function read(num) {
   }));
   return number;
 }
-const board = read(process.argv[2]);
 
 function solve(board) {
   for (let i = 0; i < board.length; i++) {
@@ -36,24 +35,24 @@ function solve(board) {
   }
   return board;
 }
+
 function isSolved(board, row, col, num) {
   for (let i = 0; i < board.length; i++) {
     if (board[i][col] === num || board[row][i] === num) {
       return false;
     }
+  }
+  const startRow = Math.floor(row / 3) * 3;
+  const startCol = Math.floor(col / 3) * 3;
 
-    const startRow = Math.floor(row / 3) * 3;
-    const startCol = Math.floor(col / 3) * 3;
-
-    for (let i = startRow; i < startRow + 3; i++) {
-      for (let j = startCol; j < startCol + 3; j++) {
-        if (board[i][j] === num) {
-          return false;
-        }
+  for (let i = startRow; i < startRow + 3; i++) {
+    for (let j = startCol; j < startCol + 3; j++) {
+      if (board[i][j] === num) {
+        return false;
       }
     }
-    return true;
   }
+  return true;
 }
 
 function prettyBoard(phrase, fail) {
