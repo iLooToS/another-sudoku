@@ -22,6 +22,8 @@ function read(num) {
   return number;
 }
 
+console.log(read(4));
+
 function solve() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции read.
